@@ -210,7 +210,7 @@ app.get('/add', function(req, res) {
 });
 
 app.get('/logged', function (req, res) {
-  var username = req.params.username;
+  var username = req.query.username;
   if (username == 'Strovala')
     var userId = "766846723485002";
   else {
