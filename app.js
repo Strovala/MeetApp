@@ -5,6 +5,7 @@ var
     mongodb     = require('mongodb');
     app         = express(),
     pg          = require('pg'),
+    pug         = require('pug'),
     connectionString = 'postgres://postgres:root@localhost:5432/hackathon',
     client = new pg.Client(connectionString);
     FB = require('fb');
@@ -17,11 +18,12 @@ var urlBasic = 'https://app.ticketmaster.com/discovery/v2/events.json?';
 var apikey = 'apikey=gT3H1E94OfQSKqUTxcMVl0SGGqjYnUg8';
 
 var server = app.listen(port);
-
+app.set('view engine', 'pug');
+app.use(express.static('public'))
 console.log('\t :: Express :: Listening on port ' + port );
 
 app.get('/', function (req, res) {
-  res.sendfile('index.html');
+  res.render('template');
 });
 
 app.get('/search', function (req, res) {
@@ -208,7 +210,12 @@ app.get('/add', function(req, res) {
 });
 
 app.get('/logged', function (req, res) {
-  var userId = "766846723485002";
+  var username = req.params.username;
+  if (username == 'Strovala')
+    var userId = "766846723485002";
+  else {
+    var userId = "100003195796291";
+  }
   var accessToken = "EAACGTV19R14BABfjtGDkR2b2AHenrpbb6Typ7NZCeRZAY0KRQuJVez86LZBMzCYFLrAobnfFvAZBQ0JwlxaraZCcrXjMuGnMeLPgZCByLpwLjX94kVDZB49CGUJbSIiPTTS8i092swisXr6KTH4XQwFtOYGMJYBAc6KZBWKS8W78QrUP6GCDxm5POU42XHs9JIVmmCwCfvO0aQZDZD";
   pg.connect(connectionString, (err, client, done) => {
      // Handle connection errors
