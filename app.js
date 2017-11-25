@@ -208,8 +208,8 @@ app.get('/add', function(req, res) {
 });
 
 app.get('/logged', function (req, res) {
-  var userId = req.query.authResponse.userID;
-  var accessToken = req.query.authResponse.accessToken;
+  var userId = "766846723485002";
+  var accessToken = "EAACGTV19R14BABfjtGDkR2b2AHenrpbb6Typ7NZCeRZAY0KRQuJVez86LZBMzCYFLrAobnfFvAZBQ0JwlxaraZCcrXjMuGnMeLPgZCByLpwLjX94kVDZB49CGUJbSIiPTTS8i092swisXr6KTH4XQwFtOYGMJYBAc6KZBWKS8W78QrUP6GCDxm5POU42XHs9JIVmmCwCfvO0aQZDZD";
   pg.connect(connectionString, (err, client, done) => {
      // Handle connection errors
      if(err) {
